@@ -13,5 +13,26 @@ namespace CP380_B2_BlockWebAPI.Controllers
     public class PendingPayloadsController : ControllerBase
     {
         // TODO
+
+        private readonly List<PendingPayloads> p;
+        private PendingPayloadsList pl;
+
+        public PendingPayloadsController()
+        {
+            var payloads = new List<PendingPayloads>();
+            var payloadsList = new PendingPayloadsList();
+            p = payloads;
+            pl = payloadsList;
+        }
+
+        [HttpGet]
+        public ActionResult<List<PendingPayloads>> Get() =>
+            p.ToList();
+
+        [HttpPost]
+        public ActionResult<PendingPayloads> Post(PendingPayloads payload)
+        {
+            return pl.Add(payload);
+        }
     }
 }
